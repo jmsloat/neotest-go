@@ -149,6 +149,17 @@ function adapter.build_spec(args)
       results_path = results_path,
       file = position.path,
     },
+    strategy = {
+      type = 'go',
+      name = 'Neotest Debugger',
+      request = 'launch',
+      mode = 'test',
+      program = './${relativeFileDirname}',
+      args = {
+        '-test.run',
+        '^' .. utils.get_prefix(args.tree, position.name) .. '$',
+      }
+    }
   }
 end
 
